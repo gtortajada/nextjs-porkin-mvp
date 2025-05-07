@@ -1,0 +1,72 @@
+import { auth } from "@/auth";
+import { Grid, Card, Text, Title } from '@mantine/core';
+
+export default async function Dashboard() {
+  const session = await auth();
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ideas`, {
+      method: 'GET',
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch ideas');
+    }
+
+    const ideas = await response.json();
+
+    return (
+      <main style={{ padding: '1rem' }}>
+        <Title order={1} mb="sm">
+          Welcome to IdeaXchange, {session?.user?.name}!
+        </Title>
+        <Text size="xl" mb="lg">
+          Here you can find all ideas and projects or create a new idea.
+        </Text>
+
+        <Grid>
+          {ideas.length === 0 ? (
+            <Text italic color="dimmed">
+              No ideas have been shared yet. Be the first!
+            </Text>
+          ) : (
+            ideas.map((idea: any) => (
+              <Grid.Col key={idea._id} span={{ base: 12, md: 6, lg: 4 }}>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                  <Title order={3}>{idea.title}</Title>
+                  
+                  <Text mt="sm" lineClamp={3}>
+                    {idea.description}
+                  </Text>
+                  
+                  <div mt="md">
+                    <Text size="sm" c="dimmed">
+                      Zodiac: {idea.zodiac}
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Created by: {idea.userId}
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Created: {new Date(idea.createdAt).toLocaleDateString()}
+                    </Text>
+                  </div>
+                </Card>
+              </Grid.Col>
+            ))
+          )}
+        </Grid>
+      </main>
+    );
+  } catch (error) {
+    console.error('Error loading ideas:', error);
+    return (
+      <main>
+        <Title order={1} mb="sm">
+          Welcome to IdeaXchange, {session?.user?.name}!
+        </Title>
+        <Text color="red">Error loading ideas. Please try again later.</Text>
+      </main>
+    );
+  }
+}
