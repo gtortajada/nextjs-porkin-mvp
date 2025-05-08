@@ -255,7 +255,7 @@ export default function AuthenticatedLayout({
                 hiddenFrom="sm"
                 size="sm"
               />
-              <Title order={2}>IdeaXchange</Title>
+              <Title order={2}>Porkin</Title>
             </Group>
 
             <Button

@@ -19,7 +19,7 @@ export default async function Dashboard() {
     return (
       <main style={{ padding: '1rem' }}>
         <Title order={1} mb="sm">
-          Welcome to IdeaXchange, {session?.user?.name}!
+          Welcome to Porkin, {session?.user?.name}!
         </Title>
         <Text size="xl" mb="lg">
           Here you can find all ideas and projects or create a new idea.
@@ -63,7 +63,7 @@ export default async function Dashboard() {
     return (
       <main>
         <Title order={1} mb="sm">
-          Welcome to IdeaXchange, {session?.user?.name}!
+          Welcome to Porkin, {session?.user?.name}!
         </Title>
         <Text color="red">Error loading ideas. Please try again later.</Text>
       </main>

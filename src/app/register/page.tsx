@@ -99,7 +99,7 @@ export default function Register() {
       <div className={styles.registerBox}>
         <div className={styles.registerHeader}>
           <h2>
-            Junte-se ao IdeaXchange sem pagar nada e dê vida às suas ideias
+            Venha cuidar do seu dinheiro e fazer o porkin crescer!
           </h2>
         </div>
 

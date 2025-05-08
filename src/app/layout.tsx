@@ -8,8 +8,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "IdeaXchange",
-  description: "Transformando ideias em ações",
+  title: "Porkin",
+  description: "Ajudando você, a cuidar das duas finanças.",
 };
 
 const geistSans = Geist({
