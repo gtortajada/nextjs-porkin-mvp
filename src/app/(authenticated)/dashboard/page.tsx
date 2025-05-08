@@ -19,16 +19,16 @@ export default async function Dashboard() {
     return (
       <main style={{ padding: '1rem' }}>
         <Title order={1} mb="sm">
-          Welcome to Porkin, {session?.user?.name}!
+          Bem vindo ao Porkin, {session?.user?.name}!
         </Title>
         <Text size="xl" mb="lg">
-          Here you can find all ideas and projects or create a new idea.
+          Aqui você encontra todas as suas metas, podendo alterar ou criar uma nova meta.
         </Text>
 
         <Grid>
           {ideas.length === 0 ? (
             <Text style={{ fontStyle: 'italic' }} color="dimmed">
-              No ideas have been shared yet. Be the first!
+              Nenhum projeto foi criado ainda. Crie um agora!
             </Text>
           ) : (
             ideas.map((idea: { _id: string; title: string; description: string; zodiac: string; userId: string; createdAt: string }) => (
@@ -63,9 +63,9 @@ export default async function Dashboard() {
     return (
       <main>
         <Title order={1} mb="sm">
-          Welcome to Porkin, {session?.user?.name}!
+          Bem vindo ao Porkin, {session?.user?.name}!
         </Title>
-        <Text color="red">Error loading ideas. Please try again later.</Text>
+        <Text color="red">Erro ao carregar suas metas. Tente novamente mais tarde.</Text>
       </main>
     );
   }
