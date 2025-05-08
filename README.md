@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 # nextjs-porkin-mvp
-Tecnologias testadas: 
+Tecnologias testadas: Next.js, React, TypeScript, ESLint, Mantine, Auth.js, MongoDb, MongoAdapter e Bcrypt.  
 =======
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
