@@ -27,11 +27,11 @@ export default async function Dashboard() {
 
         <Grid>
           {ideas.length === 0 ? (
-            <Text italic color="dimmed">
+            <Text style={{ fontStyle: 'italic' }} color="dimmed">
               No ideas have been shared yet. Be the first!
             </Text>
           ) : (
-            ideas.map((idea: any) => (
+            ideas.map((idea: { _id: string; title: string; description: string; zodiac: string; userId: string; createdAt: string }) => (
               <Grid.Col key={idea._id} span={{ base: 12, md: 6, lg: 4 }}>
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                   <Title order={3}>{idea.title}</Title>
@@ -40,7 +40,7 @@ export default async function Dashboard() {
                     {idea.description}
                   </Text>
                   
-                  <div mt="md">
+                  <div style={{ marginTop: '1rem' }}>
                     <Text size="sm" c="dimmed">
                       Zodiac: {idea.zodiac}
                     </Text>
