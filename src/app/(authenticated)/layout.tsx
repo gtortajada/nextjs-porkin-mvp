@@ -31,7 +31,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useEffect } from "react";
 
 type IdeaSubmissionDrawerContextType = {
   openDrawer: () => void;
@@ -335,7 +335,7 @@ export default function AuthenticatedLayout({
   );
 }
 
-//! TODO: Check where is the best place to put this hook
-export const useIdeaSubmissionDrawer = () => {
-  return useContext(IdeaSubmissionDrawerContext);
-};
+//! TODO: Check where is thebest  place to put this hook
+// export const useIdeaSubmissionDrawer = () => {
+//   return useContext(IdeaSubmissionDrawerContext);
+// };
