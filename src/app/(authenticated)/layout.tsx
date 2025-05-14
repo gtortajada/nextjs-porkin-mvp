@@ -335,7 +335,7 @@ export default function AuthenticatedLayout({
   );
 }
 
-//! TODO: Check where is the best place to put this hook
-export const useIdeaSubmissionDrawer = () => {
-  return useContext(IdeaSubmissionDrawerContext);
-};
+//! TODO: Check where is thebest  place to put this hook
+// export const useIdeaSubmissionDrawer = () => {
+//   return useContext(IdeaSubmissionDrawerContext);
+// };
