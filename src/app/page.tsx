@@ -17,8 +17,7 @@ export default async function Home() {
         <Link href="/dashboard">Dashboard</Link>
       </div>
       <h1>
-        Public home page (probably will redirect to the landing page @bet will
-        create)
+        Public home page.
       </h1>
     </main>
   );
