@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Hero03 } from "@/components/titanium/mantine/blocks/hero-03";
+import { Passos } from "@/components/titanium/mantine/blocks/passos";
+import { Funcionalidades } from "@/components/titanium/mantine/blocks/funcionalidades";
 
 export default async function Home() {
   return (
@@ -16,10 +19,9 @@ export default async function Home() {
         <Link href="/onboarding">Onboarding</Link>
         <Link href="/dashboard">Dashboard</Link>
       </div>
-      <h1>
-        Public home page (probably will redirect to the landing page @bet will
-        create)
-      </h1>
+      <Hero03 />
+      <Passos />
+      <Funcionalidades />
     </main>
   );
 }
