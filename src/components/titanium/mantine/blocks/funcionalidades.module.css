@@ -1,0 +1,21 @@
+.card {
+  width: 50%;
+  border-radius: var(--mantine-radius-xl);
+  transition: all 0.3s ease;
+  background: none;
+  text-align: center;
+
+  &:hover {
+    background: var(--mantine-color-grape-9);
+  }
+}
+
+.button {
+  background-color: var(--mantine-color-grape-6);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--mantine-color-grape-7);
+    transform: scale(1.05);
+  }
+}
