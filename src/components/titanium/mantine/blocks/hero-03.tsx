@@ -9,13 +9,11 @@ import {
   Container,
   ContainerProps,
   Flex,
-  Image,
   Rating,
   Stack,
   Text
 } from "@mantine/core";
 import { motion } from "framer-motion";
-import NextImage from "next/image";
 import classes from "./hero-03.module.css";
 
 type ImageItem = { src: string; alt: string };
@@ -51,32 +49,6 @@ export const Hero03 = ({
       size="xl"
       {...containerProps}
     >
-      <Image
-        component={NextImage}
-        pos="absolute"
-        inset={0}
-        src="/bg/kubadesign-19-light.jpg"
-        mx="auto"
-        alt=""
-        width={1784}
-        height={1000}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-        priority
-        darkHidden
-      />
-      <Image
-        component={NextImage}
-        pos="absolute"
-        inset={0}
-        src="/bg/kubadesign-19-dark.jpg"
-        mx="auto"
-        alt=""
-        width={1784}
-        height={1000}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-        priority
-        lightHidden
-      />
       <Box
         pos="absolute"
         top={0}
