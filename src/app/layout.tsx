@@ -36,8 +36,21 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <MantineProvider theme={theme} defaultColorScheme="dark">
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        style={{
+          backgroundImage: 'url(/images/background.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh',
+        }}
+      >
+        <MantineProvider 
+          theme={theme}
+          defaultColorScheme="dark"
+          
+          >
           <Notifications position="top-right" zIndex={1000} />
           <SessionProvider>{children}</SessionProvider>
         </MantineProvider>

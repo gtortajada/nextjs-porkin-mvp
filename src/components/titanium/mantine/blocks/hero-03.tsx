@@ -2,20 +2,16 @@
 
 import { JumboTitle } from "@/components/titanium/mantine/components/jumbo-title";
 import {
-  Avatar,
-  AvatarGroup,
   Box,
   Button,
   Container,
   ContainerProps,
   Flex,
-  Image,
-  Rating,
   Stack,
   Text
 } from "@mantine/core";
 import { motion } from "framer-motion";
-import NextImage from "next/image";
+import Image from "next/image";
 import classes from "./hero-03.module.css";
 
 type ImageItem = { src: string; alt: string };
@@ -24,16 +20,11 @@ type Hero03Props = ContainerProps & {
   avatarItems?: ImageItem[];
   title?: string;
   description?: string;
-  rating?: number;
-  ratingLabel?: string;
 };
 
 export const Hero03 = ({
   title = "Domine seu dinheiro, conquiste sua liberdade!",
   description = "No Porkin, acreditamos que o controle financeiro é a chave para uma vida sem preocupações.",
-  rating = 5,
-  ratingLabel = "Mais de 5 pessoas confiam no Porkin",
-  avatarItems = AVATAR_ITEMS_DEMO,
   ...containerProps
 }: Hero03Props) => (
   <Container
@@ -51,32 +42,6 @@ export const Hero03 = ({
       size="xl"
       {...containerProps}
     >
-      <Image
-        component={NextImage}
-        pos="absolute"
-        inset={0}
-        src="/bg/kubadesign-19-light.jpg"
-        mx="auto"
-        alt=""
-        width={1784}
-        height={1000}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-        priority
-        darkHidden
-      />
-      <Image
-        component={NextImage}
-        pos="absolute"
-        inset={0}
-        src="/bg/kubadesign-19-dark.jpg"
-        mx="auto"
-        alt=""
-        width={1784}
-        height={1000}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-        priority
-        lightHidden
-      />
       <Box
         pos="absolute"
         top={0}
@@ -85,9 +50,41 @@ export const Hero03 = ({
         w="100%"
         className={classes["vertical-backdrop"]}
       />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        style={{
+          position: "absolute",
+          bottom: '100px',
+          right: 0,
+          zIndex: 0,
+          filter: "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))",
+        }}
+      >
+        <Box
+          pos="relative"
+          w={{ base: 500, sm: 800 }}
+          h={{ base: 450, sm: 800 }}
+          style={{
+            filter: "drop-shadow(0 8px 5px rgba(0, 0, 0, 0.1))",
+          }}
+        >
+          <Image
+            src="/images/cellPhone.png"
+            alt="Smartphone showing financial app"
+            fill
+            style={{
+              objectFit: "contain",
+              objectPosition: "bottom right",
+            }}
+          />
+        </Box>
+      </motion.div>
       <Flex h="100%" align="center" pos="relative" justify="center">
         <Stack
-          pt={{ base: "xl", sm: 0 }}
+          pt={{ base: 0, sm: 0 }}
           maw="var(--mantine-breakpoint-md)"
           align="center"
           gap="lg"
@@ -100,7 +97,7 @@ export const Hero03 = ({
             viewport={{ once: true }}
           >
             <JumboTitle
-              ta="center"
+              ta="left"
               order={1}
               fz="lg"
               style={{ textWrap: "balance" }}
@@ -138,59 +135,8 @@ export const Hero03 = ({
               Experimente Grátis
             </Button>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0.0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeInOut" }}
-            viewport={{ once: true }}
-          >
-            <Stack align="center" mt="md">
-              <AvatarGroup>
-                {avatarItems.map((avatarItem, index) => (
-                  <Avatar
-                    key={index}
-                    src={avatarItem.src}
-                    className={classes.avatar}
-                  />
-                ))}
-              </AvatarGroup>
-              <Stack align="center" gap={4}>
-                {rating && (
-                  <Rating color="var(--mantine-color-text)" value={rating} />
-                )}
-                {ratingLabel && (
-                  <Text ta="center" fz="sm" c="dimmed">
-                    {ratingLabel}
-                  </Text>
-                )}
-              </Stack>
-            </Stack>
-          </motion.div>
         </Stack>
       </Flex>
     </Container>
   </Container>
 );
-
-const AVATAR_ITEMS_DEMO: ImageItem[] = [
-  {
-    src: "https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?&format&fit=facearea&facepad=3&w=900&h=900&q=80&ixlib=rb-1.2.1",
-    alt: "",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?&format&fit=facearea&facepad=3&w=900&h=900&q=80&ixlib=rb-1.2.1",
-    alt: "",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?&format&fit=facearea&facepad=3&w=900&h=900&q=80&ixlib=rb-1.2.1",
-    alt: "",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1645857195444-2064b4ecabf3?q=80&w=2488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?&format&fit=facearea&facepad=3&w=900&h=900&q=80&ixlib=rb-1.2.1",
-    alt: "",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1707672972137-64390186af62?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "",
-  },
-];

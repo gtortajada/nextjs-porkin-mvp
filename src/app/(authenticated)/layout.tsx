@@ -69,9 +69,6 @@ function NavbarSection({
       </UnstyledButton>
 
       <Collapse in={opened}>
-        <Text size="sm" c="dimmed" mt="xs">
-          This is a mockup section with {mockupItems} items.
-        </Text>
         {Array(mockupItems)
           .fill(0)
           .map((_, index) => (
@@ -287,13 +284,13 @@ export default function AuthenticatedLayout({
           )}
 
           <AppShell.Section grow component={ScrollArea}>
-            <NavbarSection title="Favoritos" mockupItems={2} />
+            <NavbarSection title="Minhas metas" mockupItems={2} />
             <Divider my="md" />
-            <NavbarSection title="Espaços Privados" mockupItems={3} />
+            <NavbarSection title="Meus gastos" mockupItems={2} />
             <Divider my="md" />
             <NavbarSection
-              title="Favoritos abandonados"
-              mockupItems={30}
+              title="Meus recebimentos"
+              mockupItems={2}
               open={false}
             />
           </AppShell.Section>
