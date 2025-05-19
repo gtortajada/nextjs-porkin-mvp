@@ -14,8 +14,8 @@ export default async function Home() {
           justifyContent: "space-evenly",
         }}
       >
-        <Link href="/login">Login</Link>
-        <Link href="/register">Register</Link>
+        <Link href="/login">Entre</Link>
+        <Link href="/register">Registre-se</Link>
         <Link href="/onboarding">Onboarding</Link>
         <Link href="/dashboard">Dashboard</Link>
       </div>
