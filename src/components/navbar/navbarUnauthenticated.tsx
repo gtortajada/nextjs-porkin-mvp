@@ -17,8 +17,8 @@ const NavbarUnauthenticated: FC = () => {
   
   const menuItems = [
     { href: '/', label: 'Início' },
-    { href: '/como-fazemos', label: 'Como fazemos' },
-    { href: '/recursos', label: 'Recursos' },
+    { href: '#passos', label: 'Como fazemos' },
+    { href: '#funcionalidades', label: 'Recursos' },
   ];
 
   const mobileMenuVariants = {
