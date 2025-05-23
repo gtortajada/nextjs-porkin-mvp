@@ -13,6 +13,7 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 import classes from "./hero-03.module.css";
+import Link from "next/link";
 
 type ImageItem = { src: string; alt: string };
 
@@ -131,6 +132,8 @@ export const Hero03 = ({
               size="lg"
               radius="xl"
               gradient={{ from: "gray", to: "grape", deg: 90 }}
+              component={Link}
+              href="/register"
             >
               Experimente Grátis
             </Button>

@@ -3,6 +3,7 @@
 import { Button, Container, Flex, Text, Title } from "@mantine/core";
 import { motion } from "framer-motion";
 import classes from "./funcionalidades.module.css";
+import Link from "next/link";
 
 export const Funcionalidades = () => {
   const features = [
@@ -92,6 +93,8 @@ export const Funcionalidades = () => {
               size="lg"
               radius="xl"
               gradient={{ from: "gray", to: "grape", deg: 90 }}
+              component={Link}
+              href="/register"
             >
               Quero começar
             </Button>
