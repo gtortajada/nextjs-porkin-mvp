@@ -8,10 +8,11 @@ import {
   ContainerProps,
   Flex,
   Stack,
-  Text
+  Text,
 } from "@mantine/core";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import classes from "./hero-03.module.css";
 
 type ImageItem = { src: string; alt: string };
@@ -57,7 +58,7 @@ export const Hero03 = ({
         viewport={{ once: true }}
         style={{
           position: "absolute",
-          bottom: '100px',
+          bottom: "100px",
           right: 0,
           zIndex: 0,
           filter: "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))",
@@ -131,6 +132,8 @@ export const Hero03 = ({
               size="lg"
               radius="xl"
               gradient={{ from: "gray", to: "grape", deg: 90 }}
+              component={Link}
+              href="/register"
             >
               Experimente Grátis
             </Button>

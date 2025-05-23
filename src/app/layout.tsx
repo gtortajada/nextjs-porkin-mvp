@@ -1,3 +1,4 @@
+import NavbarWrapper from "@/components/navbar/navbarWrapper";
 import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Notifications } from "@mantine/notifications";
@@ -36,23 +37,22 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
-      <body 
+      <body
         className={`${geistSans.variable} ${geistMono.variable}`}
         style={{
-          backgroundImage: 'url(/images/background.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: '100vh',
+          backgroundImage: "url(/images/background.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          minHeight: "100vh",
         }}
       >
-        <MantineProvider 
-          theme={theme}
-          defaultColorScheme="dark"
-          
-          >
+        <MantineProvider theme={theme} defaultColorScheme="dark">
           <Notifications position="top-right" zIndex={1000} />
-          <SessionProvider>{children}</SessionProvider>
+          <SessionProvider>
+            <NavbarWrapper />
+            {children}
+          </SessionProvider>
         </MantineProvider>
       </body>
     </html>

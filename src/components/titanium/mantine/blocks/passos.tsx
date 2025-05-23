@@ -5,58 +5,36 @@ import { Box, Container, Flex, Text } from "@mantine/core";
 import { motion } from "framer-motion";
 
 export const Passos = () => (
-  <Container
-    pos="relative"
-    py={30}
-    size="xl"
-    style={{ overflow: "hidden" }}
-  >
-    <Flex
-      h="100%"
-      direction="column"
-      align="center"
-      justify="center"
-      gap="xl"
-    >
+  <Container id="passos" pos="relative" py={30} size="xl" style={{ overflow: "hidden" }}>
+    <Flex h="100%" direction="column" align="center" justify="center" gap="xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <JumboTitle
-          ta="center"
-          order={4}
-          fz="xs"
-          mb="lg"
-        >
+        <JumboTitle ta="center" order={4} fz="xs" mb="lg">
           Os três passos para o resultado
         </JumboTitle>
       </motion.div>
 
-      <Flex
-        gap="xl"
-        wrap="wrap"
-        justify="center"
-        maw={1200}
-        mx="auto"
-      >
+      <Flex gap="xl" wrap="wrap" justify="center" maw={1200} mx="auto">
         {[
           {
             emoji: "1️⃣",
             title: "Crie sua conta gratuita",
-            description: "sem cartão de crédito, sem complicação"
+            description: "sem cartão de crédito, sem complicação",
           },
           {
-            emoji: "2️⃣", 
+            emoji: "2️⃣",
             title: "Defina sua meta principal",
-            description: "seja específico: valor, prazo, motivo"
+            description: "seja específico: valor, prazo, motivo",
           },
           {
             emoji: "3️⃣",
             title: "Comece a registrar",
-            description: "1 minuto por dia é tudo que você precisa"
-          }
+            description: "1 minuto por dia é tudo que você precisa",
+          },
         ].map((card, index) => (
           <motion.div
             key={index}
@@ -73,10 +51,12 @@ export const Passos = () => (
                 borderRadius: "var(--mantine-radius-xl)",
                 border: "1px solid var(--mantine-color-dark-5)",
                 background: "none",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
-              <Text fz="2rem" mb="sm">{card.emoji}</Text>
+              <Text fz="2rem" mb="sm">
+                {card.emoji}
+              </Text>
               <Text fz="xl" fw={600} mb={4}>
                 {card.title}
               </Text>
