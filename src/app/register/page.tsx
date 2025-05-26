@@ -13,7 +13,7 @@ export default function Register() {
   const { status } = useSession();
 
   if (status === "authenticated") {
-    redirect("/dashboard");
+    redirect("/visao-geral");
   }
 
   if (isLoading) {
