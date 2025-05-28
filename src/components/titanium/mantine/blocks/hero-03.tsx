@@ -73,7 +73,7 @@ export const Hero03 = ({
           }}
         >
           <Image
-            src="/images/cellPhone.png"
+            src="/images/cellphone.png"
             alt="Smartphone showing financial app"
             fill
             style={{
