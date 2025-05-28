@@ -1,6 +1,10 @@
-<<<<<<< HEAD
 # nextjs-porkin-mvp
-Tecnologias testadas: 
+App de gerenciamento financeiro feito para estudo pessoal.
+
+Atualmente hospedado na URL: https://app.gtortajada.online/
+
+Tecnologias testadas: Next, React, Typescript, Mantine UI, Next-auth e Framer-motion. 
+
 =======
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
