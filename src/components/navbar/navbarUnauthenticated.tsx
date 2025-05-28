@@ -16,14 +16,12 @@ const NavbarUnauthenticated: FC = () => {
 
   const toggleMenu = () => setOpened((o) => !o);
 
-  // Menu items specific to the unauthenticated navbar
   const menuItems = [
     { href: "/", label: "Início" },
     { href: "#passos", label: "Como fazemos" },
     { href: "#funcionalidades", label: "Recursos" },
   ];
 
-  // Styles copied from NavbarAuthenticated
   const linkStyle = {
     textDecoration: "none",
     color: "#4c1d95",
@@ -32,10 +30,9 @@ const NavbarUnauthenticated: FC = () => {
     borderRadius: "4px",
     backgroundColor: "transparent",
     transition: "all 0.2s ease",
-    fontSize: "0.875rem", // Smaller font size
+    fontSize: "0.875rem",
   };
 
-  // Active link style might need adjustment based on how active state is determined for hash links
   const activeLinkStyle = {
     ...linkStyle,
     color: "#db2777",
@@ -56,7 +53,6 @@ const NavbarUnauthenticated: FC = () => {
     },
   };
 
-  // Logo dimensions copied from NavbarAuthenticated
   const logoWidthDesktop = 160;
   const logoOriginalWidth = 1024;
   const logoOriginalHeight = 311;
@@ -65,18 +61,16 @@ const NavbarUnauthenticated: FC = () => {
   const logoWidthMobile = 100;
   const logoHeightMobile = logoWidthMobile / logoAspectRatio;
 
-
   return (
     <Box
       component="nav"
-      // Removed py="md"
       style={{
         position: "sticky",
         top: 0,
         zIndex: 100,
-        backgroundColor: "#ffff00", // Yellow background
-        paddingTop: '8px', // Added padding for logo height
-        paddingBottom: '8px',
+        backgroundColor: "#ffff00",
+        paddingTop: "8px",
+        paddingBottom: "8px",
       }}
     >
       <Container size="xl">
@@ -84,10 +78,11 @@ const NavbarUnauthenticated: FC = () => {
           gap="md"
           align="center"
           justify="space-between"
-          // Added minHeight and flexWrap
-          style={{ flexWrap: 'nowrap', minHeight: isMobile ? logoHeightMobile : logoHeightDesktop }}
+          style={{
+            flexWrap: "nowrap",
+            minHeight: isMobile ? logoHeightMobile : logoHeightDesktop,
+          }}
         >
-          {/* Logo container with updated dimensions */}
           <Box
             style={{
               width: isMobile ? logoWidthMobile : logoWidthDesktop,
@@ -97,24 +92,23 @@ const NavbarUnauthenticated: FC = () => {
             }}
           >
             <Image
-              src="/images/Logo.png" // Ensure this path is correct
+              src="/images/logo.png"
               alt="Logo do Porkin App"
-              fill // Use fill
+              fill
               style={{
-                objectFit: "contain", // Keep aspect ratio
+                objectFit: "contain",
               }}
               priority
-              // Updated sizes attribute
               sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
-              // Removed width/height props to avoid conflict with fill
             />
           </Box>
 
-          {/* Desktop Menu & Auth Buttons */} 
           {!isMobile && (
-            // Use flexGrow and justify flex-end for right alignment
-            <Group gap="md" justify="flex-end" style={{ flexGrow: 1, flexWrap: 'nowrap' }}>
-              {/* Menu Items */} 
+            <Group
+              gap="md"
+              justify="flex-end"
+              style={{ flexGrow: 1, flexWrap: "nowrap" }}
+            >
               {menuItems.map((item) => (
                 <motion.div
                   key={item.href}
@@ -123,7 +117,6 @@ const NavbarUnauthenticated: FC = () => {
                 >
                   <Link
                     href={item.href}
-                    // Apply smaller font size and adjusted padding
                     style={pathname === item.href ? activeLinkStyle : linkStyle}
                   >
                     {item.label}
@@ -131,47 +124,45 @@ const NavbarUnauthenticated: FC = () => {
                 </motion.div>
               ))}
 
-              {/* Auth Buttons - Kept original buttons, wrapped in Group */}
-              <Group gap="sm" style={{ marginLeft: 'auto', flexShrink: 0 }}>
-                 <motion.div
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                 >
-                   <Button
-                     variant="outline"
-                     color="violet" // Consider adjusting colors for yellow background
-                     component={Link}
-                     href="/login"
-                     size="xs" // Make buttons smaller to fit better?
-                   >
-                     Login
-                   </Button>
-                 </motion.div>
-                 <motion.div
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                 >
-                   <Button
-                     variant="filled"
-                     color="pink" // Consider adjusting colors for yellow background
-                     component={Link}
-                     href="/register"
-                     size="xs" // Make buttons smaller to fit better?
-                   >
-                     Comece já
-                   </Button>
-                 </motion.div>
+              <Group gap="sm" style={{ marginLeft: "auto", flexShrink: 0 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    variant="outline"
+                    color="violet"
+                    component={Link}
+                    href="/login"
+                    size="xs"
+                  >
+                    Login
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    variant="filled"
+                    color="pink"
+                    component={Link}
+                    href="/register"
+                    size="xs"
+                  >
+                    Comece já
+                  </Button>
+                </motion.div>
               </Group>
             </Group>
           )}
 
-          {/* Mobile Burger & Menu */} 
           {isMobile && (
             <>
               <Burger
                 opened={opened}
                 onClick={toggleMenu}
-                color="#4c1d95" // Changed color for contrast
+                color="#4c1d95"
                 size="sm"
                 aria-label="Toggle navigation"
               />
@@ -184,7 +175,6 @@ const NavbarUnauthenticated: FC = () => {
                     exit="closed"
                     style={{
                       position: "absolute",
-                      // Adjusted top position
                       top: `calc(${logoHeightMobile}px + 16px + 1px)`,
                       left: 0,
                       right: 0,
@@ -196,24 +186,30 @@ const NavbarUnauthenticated: FC = () => {
                       gap: "1rem",
                       width: "100%",
                       zIndex: 99,
-                      borderTop: '1px solid #e0e0e0',
+                      borderTop: "1px solid #e0e0e0",
                     }}
                   >
-                    {/* Mobile Menu Items */} 
                     {menuItems.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        // Apply smaller font size and adjusted padding
-                        style={pathname === item.href ? activeLinkStyle : linkStyle}
+                        style={
+                          pathname === item.href ? activeLinkStyle : linkStyle
+                        }
                         onClick={() => setOpened(false)}
                       >
                         {item.label}
                       </Link>
                     ))}
 
-                    {/* Mobile Auth Buttons - Kept original buttons */}
-                    <Group grow style={{ borderTop: '1px solid #e0e0e0', paddingTop: '1rem', marginTop: '0.5rem' }}>
+                    <Group
+                      grow
+                      style={{
+                        borderTop: "1px solid #e0e0e0",
+                        paddingTop: "1rem",
+                        marginTop: "0.5rem",
+                      }}
+                    >
                       <Button
                         variant="outline"
                         color="violet"
@@ -247,4 +243,3 @@ const NavbarUnauthenticated: FC = () => {
 };
 
 export default NavbarUnauthenticated;
-
