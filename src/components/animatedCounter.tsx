@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Text, type TextProps } from '@mantine/core';
-import { useInViewport } from '@mantine/hooks';
-import { useEffect, useState } from 'react';
+import { Text, type TextProps } from "@mantine/core";
+import { useInViewport } from "@mantine/hooks";
+import { useEffect, useState } from "react";
 
-export type AnimatedCounterProps = Omit<TextProps, 'children'> & {
+export type AnimatedCounterProps = Omit<TextProps, "children"> & {
   value: number;
   duration?: number;
   slowdownStepCount?: number;
@@ -24,7 +24,6 @@ export const AnimatedCounter = ({
   const { ref, inViewport } = useInViewport();
   const slowdownStartValue = endValue - slowdownStepCount;
 
-  // First phase (count up to slowdownStartValue)
   useEffect(() => {
     if (!inViewport && currentValue === 0) return () => {};
     if (currentValue >= slowdownStartValue) return () => {};
@@ -37,18 +36,14 @@ export const AnimatedCounter = ({
     return () => clearInterval(timer);
   }, [inViewport, endValue, currentValue, duration, slowdownStartValue]);
 
-  // Second phase (slow down the last steps)
   useEffect(() => {
     if (currentValue < slowdownStartValue) return () => {};
     if (currentValue === endValue) return () => {};
 
-    const timer = setInterval(
-      () => {
-        setCurrentValue((prev) => prev + 1);
-        if (currentValue === endValue) clearInterval(timer);
-      },
-      2 ** (currentValue - slowdownStartValue) * 15,
-    );
+    const timer = setInterval(() => {
+      setCurrentValue((prev) => prev + 1);
+      if (currentValue === endValue) clearInterval(timer);
+    }, 2 ** (currentValue - slowdownStartValue) * 15);
 
     return () => clearInterval(timer);
   }, [endValue, currentValue, slowdownStartValue]);

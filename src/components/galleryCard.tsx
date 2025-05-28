@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Box,
@@ -7,33 +7,18 @@ import {
   Text,
   type PaperProps,
   type TextProps,
-} from '@mantine/core';
-import { motion } from 'framer-motion';
-import NextImage, { type ImageProps as NextImageProps } from 'next/image';
+} from "@mantine/core";
+import { motion } from "framer-motion";
+import NextImage, { type ImageProps as NextImageProps } from "next/image";
 
 export type GalleryCardProps = PaperProps & {
-  /** Background image of the card */
   backgroundImageUrl: string;
-
-  /** sizes for the background image */
-  backgroundImageSizes: NextImageProps['sizes'];
-
-  /** background image alt */
-  backgroundImageAlt: NextImageProps['alt'];
-
-  /** Title of the card */
+  backgroundImageSizes: NextImageProps["sizes"];
+  backgroundImageAlt: NextImageProps["alt"];
   title?: string;
-
-  /** Props for the title */
   titleProps?: TextProps;
-
-  /** Subtitle of the card */
   subtitle?: string;
-
-  /** Props for the subtitle */
   subtitleProps?: TextProps;
-
-  /** Whether to show the gradient */
   withGradient?: boolean;
 };
 
@@ -43,8 +28,8 @@ export const GalleryCard = ({
   backgroundImageUrl,
   backgroundImageSizes,
   backgroundImageAlt,
-  titleProps = { style: { textWrap: 'balance' } },
-  subtitleProps = { style: { textWrap: 'balance' } },
+  titleProps = { style: { textWrap: "balance" } },
+  subtitleProps = { style: { textWrap: "balance" } },
   style,
   withGradient = true,
   ...paperProps
@@ -53,18 +38,18 @@ export const GalleryCard = ({
     <Paper
       p="md"
       pos="relative"
-      style={{ overflow: 'hidden', ...style }}
+      style={{ overflow: "hidden", ...style }}
       {...paperProps}
     >
       {backgroundImageUrl && (
         <motion.div
           initial={{ scale: 1 }}
           style={{
-            position: 'absolute',
-            top: '-5%',
-            left: '-5%',
-            right: '-5%',
-            bottom: '-5%',
+            position: "absolute",
+            top: "-5%",
+            left: "-5%",
+            right: "-5%",
+            bottom: "-5%",
             zIndex: 0,
           }}
           whileHover={{ scale: 1.1 }}
@@ -74,7 +59,7 @@ export const GalleryCard = ({
             src={backgroundImageUrl}
             alt={backgroundImageAlt}
             sizes={backgroundImageSizes}
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
             priority={false}
             fill
           />
@@ -83,15 +68,15 @@ export const GalleryCard = ({
       {withGradient && (
         <Box
           style={{
-            position: 'absolute',
+            position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: '70%',
+            height: "70%",
             background:
-              'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%)',
+              "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%)",
             zIndex: 1,
-            pointerEvents: 'none',
+            pointerEvents: "none",
           }}
         />
       )}
@@ -102,8 +87,8 @@ export const GalleryCard = ({
         pos="relative"
         style={{
           zIndex: 1,
-          pointerEvents: 'none',
-          userSelect: 'none',
+          pointerEvents: "none",
+          userSelect: "none",
         }}
       >
         {title && (
