@@ -4,11 +4,10 @@ export default async function Onboarding() {
 
   return (
     <main>
-      <h1>Here we will implement the onboarding process for new users.</h1>
-      <h2>The onboarding must be engaging and interactive.</h2>
+      <h1>Aqui implementaremos o processo de integração para novos usuários.</h1>
+      <h2>A integração deve ser envolvente e interativa.</h2>
       <h3>
-        It will include completing their profile with all relevant information
-        for ideas matching (like profile picture, ideas preferences, personality profile, zodiac, etc)
+        Incluirá o preenchimento do perfil com todas as informações relevantes.
       </h3>
     </main>
   );

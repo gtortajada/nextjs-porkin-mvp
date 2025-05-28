@@ -1,5 +1,5 @@
-# nextjs-porkin-mvp
-App de gerenciamento financeiro feito para estudo pessoal.
+# Porkin App
+App de gerenciamento financeiro feito para prática de estudo pessoal.
 
 Atualmente hospedado na URL: https://app.gtortajada.online/
 
