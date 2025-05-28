@@ -36,7 +36,6 @@ const NavbarAuthenticated: FC = () => {
     { href: "/visao-geral", label: "Visão geral" },
     { href: "/lancamentos", label: "Lançamentos" },
     { href: "/relatorios", label: "Relatórios" },
-    { href: "/metas", label: "Metas" },
   ];
 
   const linkStyle = {

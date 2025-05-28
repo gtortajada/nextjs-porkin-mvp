@@ -9,7 +9,7 @@ export default function Login() {
   const { status } = useSession();
 
   if (status === "authenticated") {
-    redirect("/dashboard");
+    redirect("/visao-geral");
   }
 
   const handleCredentialsLogin = async (
@@ -33,7 +33,7 @@ export default function Login() {
       }
 
       // Redirect on successful login
-      window.location.href = "/dashboard";
+      window.location.href = "/visao-geral";
     } catch (error) {
       console.error("Login error:", error);
       //! @gtortajada TODO: Replace with a proper alert or notification system (using Mantine)
@@ -50,7 +50,7 @@ export default function Login() {
 
   const handleGitHubLogin = () => {
     signIn("github", {
-      callbackUrl: "/dashboard",
+      callbackUrl: "/visao-geral",
     });
   };
 

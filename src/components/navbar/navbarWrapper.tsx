@@ -7,7 +7,6 @@ import NavbarAuthenticated from "./navbarAuthenticated";
 export default function NavbarWrapper() {
   const pathname = usePathname();
   const isAuthRoute = [
-    '/dashboard',
     '/onboarding',
     '/visao-geral',
     '/lancamentos',
