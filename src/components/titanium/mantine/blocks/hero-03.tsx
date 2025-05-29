@@ -23,6 +23,9 @@ type Hero03Props = ContainerProps & {
   description?: string;
 };
 
+const imageVersion =
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || new Date().getTime();
+
 export const Hero03 = ({
   title = "Domine seu dinheiro, conquiste sua liberdade!",
   description = "No Porkin, acreditamos que o controle financeiro é a chave para uma vida sem preocupações.",
@@ -73,7 +76,7 @@ export const Hero03 = ({
           }}
         >
           <Image
-            src="/images/cellphone.png"
+            src={`/images/cellphone.png?v=${imageVersion}`}
             alt="Smartphone showing financial app"
             fill
             style={{
