@@ -77,6 +77,9 @@ const NavbarAuthenticated: FC = () => {
   const logoWidthMobile = 100;
   const logoHeightMobile = logoWidthMobile / logoAspectRatio;
 
+  const imageVersion =
+    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || new Date().getTime();
+
   return (
     <Box
       component="nav"
@@ -108,8 +111,8 @@ const NavbarAuthenticated: FC = () => {
             }}
           >
             <Image
-              src="/images/logo.png"
-              alt="Logo do Porkin App"
+              src={`/images/logo.png?v=${imageVersion}`}
+              alt="Logo Porkin App"
               fill
               style={{
                 objectFit: "contain",
