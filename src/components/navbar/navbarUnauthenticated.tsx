@@ -92,7 +92,7 @@ const NavbarUnauthenticated: FC = () => {
             }}
           >
             <Image
-              src="images/logo.png"
+              src="/images/logo.png"
               alt="Logo Porkin App"
               fill
               style={{
