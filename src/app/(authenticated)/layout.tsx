@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@mantine/core";
+import { Box, Container } from "@mantine/core";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
@@ -20,9 +20,9 @@ export default function AuthenticatedLayout({
   if (status === "loading") return null;
   return (
     <Box mih="100vh" px={{ base: "xl", sm: "xxl", md: "xl", lg: "xxl" }}>
-      <Box maw={1200} mx="auto">
+      <Container maw="48rem">
         <main>{children}</main>
-      </Box>
+      </Container>
     </Box>
   );
 }
