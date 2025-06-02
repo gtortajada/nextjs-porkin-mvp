@@ -1,11 +1,17 @@
 import NavbarWrapper from "@/components/navbar/navbarWrapper";
-import { ColorSchemeScript, createTheme, mantineHtmlProps, MantineProvider } from "@mantine/core";
+import {
+  ColorSchemeScript,
+  createTheme,
+  mantineHtmlProps,
+  MantineProvider,
+} from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,6 +44,25 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: -50,
+          }}>
+          <Image
+            src="/images/background.jpg"
+            alt="Background"
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
         <MantineProvider theme={theme} defaultColorScheme="dark">
           <Notifications position="top-right" zIndex={1000} />
           <SessionProvider>
