@@ -1,34 +1,43 @@
 "use client";
 
-import { Box, Burger, Container, Group, Title } from "@mantine/core";
+import {
+  Box,
+  Burger,
+  Button,
+  Container,
+  Group,
+  Title
+} from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { AnimatePresence, motion } from "framer-motion";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FC, useState } from "react";
-
-const useSession = () => {
-  return {
-    data: {
-      user: {
-        name: "Usuário Exemplo",
-      },
-    },
-    status: "authenticated",
-  };
-};
-
-const signOut = () => {
-  console.log("Logout clicked");
-};
 
 const NavbarAuthenticated: FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const { width } = useViewportSize();
   const isMobile = width < 768;
   const [opened, setOpened] = useState(false);
+  const [signOutLoading, setSignOutLoading] = useState(false);
   const { data: session } = useSession();
+
+  const handleSignOut = async () => {
+    setSignOutLoading(true);
+    try {
+      await signOut({ redirect: false });
+      router.refresh();
+      router.push("/");
+    } catch (error) {
+      console.error("Sign-out error:", error);
+    } finally {
+      setSignOutLoading(false);
+      if (isMobile) setOpened(false);
+    }
+  };
 
   const toggleMenu = () => setOpened((o) => !o);
 
@@ -40,7 +49,7 @@ const NavbarAuthenticated: FC = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "#6f4aaa",
+    color: "#b047f9",
     fontWeight: 500,
     padding: "0 8px",
     borderRadius: "4px",
@@ -94,12 +103,12 @@ const NavbarAuthenticated: FC = () => {
         <Group
           gap="md"
           align="center"
-          justify="space-between"
           style={{
             flexWrap: "nowrap",
             minHeight: isMobile ? logoHeightMobile : logoHeightDesktop,
           }}
         >
+          {/* Logo - fixed width */}
           <Box
             style={{
               width: isMobile ? logoWidthMobile : logoWidthDesktop,
@@ -121,52 +130,70 @@ const NavbarAuthenticated: FC = () => {
           </Box>
 
           {!isMobile && (
-            <Group
-              gap="md"
-              justify="flex-end"
-              style={{ flexGrow: 1, flexWrap: "nowrap" }}
-            >
-              {menuItems.map((item) => (
-                <motion.div
-                  key={item.href}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href={item.href}
-                    style={pathname === item.href ? activeLinkStyle : linkStyle}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              {session?.user && (
-                <Group gap="xs" style={{ marginLeft: "auto", flexShrink: 0 }}>
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "#8b6ebb",
-                    }}
-                  >
-                    {session.user.name}
-                  </span>
-                  <button
-                    onClick={() => signOut()}
-                    style={{
-                      background: "none",
-                      border: "1px solid #6f4aaa",
-                      color: "#8b6ebb",
-                      padding: "3px 6px",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                      fontSize: "0.875rem",
-                    }}
-                  >
-                    Sair
-                  </button>
+            <>
+              {/* Centered menu items */}
+              <Box
+                style={{
+                  flexGrow: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Group gap="md">
+                  {menuItems.map((item) => (
+                    <motion.div
+                      key={item.href}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Link
+                        href={item.href}
+                        style={
+                          pathname === item.href ? activeLinkStyle : linkStyle
+                        }
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ))}
                 </Group>
-              )}
-            </Group>
+              </Box>
+
+              {/* Right-aligned user/sign-out */}
+              <Box style={{ flexShrink: 0 }}>
+                {session?.user && (
+                  <Group gap="xs">
+                    <span
+                      style={{
+                        fontSize: "0.875rem",
+                        color: "#8b6ebb",
+                      }}
+                    >
+                      {session.user.name}
+                    </span>
+                    <Button
+                      onClick={handleSignOut}
+                      loading={signOutLoading}
+                      variant="outline"
+                      color="violet"
+                      size="xs"
+                      radius="sm"
+                      styles={{
+                        root: {
+                          borderColor: "#6f4aaa",
+                          color: "#8b6ebb",
+                          "&:hover": {
+                            backgroundColor: "rgba(111, 74, 170, 0.1)",
+                          },
+                        },
+                      }}
+                    >
+                      Sair
+                    </Button>
+                  </Group>
+                )}
+              </Box>
+            </>
           )}
 
           {isMobile && (
@@ -230,23 +257,25 @@ const NavbarAuthenticated: FC = () => {
                           >
                             {session?.user?.name}
                           </Title>
-                          <button
-                            onClick={() => {
-                              signOut();
-                              setOpened(false);
-                            }}
-                            style={{
-                              background: "none",
-                              border: "1px solid #4c1d95",
-                              color: "#6f4aaa",
-                              padding: "3px 6px",
-                              borderRadius: "4px",
-                              cursor: "pointer",
-                              fontSize: "0.875rem",
+                          <Button
+                            onClick={handleSignOut}
+                            loading={signOutLoading}
+                            variant="outline"
+                            color="violet"
+                            size="sm"
+                            radius="sm"
+                            styles={{
+                              root: {
+                                borderColor: "#6f4aaa",
+                                color: "#8b6ebb",
+                                "&:hover": {
+                                  backgroundColor: "rgba(111, 74, 170, 0.1)",
+                                },
+                              },
                             }}
                           >
                             Sair
-                          </button>
+                          </Button>
                         </Group>
                       </Box>
                     )}

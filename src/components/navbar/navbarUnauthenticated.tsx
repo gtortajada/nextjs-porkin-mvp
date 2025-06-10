@@ -24,7 +24,7 @@ const NavbarUnauthenticated: FC = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "#4c1d95",
+    color: "#b047f9",
     fontWeight: 500,
     padding: "0 8px",
     borderRadius: "4px",
@@ -222,8 +222,8 @@ const NavbarUnauthenticated: FC = () => {
                         Login
                       </Button>
                       <Button
-                        variant="filled"
-                        color="pink"
+                        variant="outline"
+                        color="violet"
                         component={Link}
                         href="/register"
                         onClick={() => setOpened(false)}
