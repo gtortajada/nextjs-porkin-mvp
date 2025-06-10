@@ -40,7 +40,7 @@ const NavbarAuthenticated: FC = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "#4c1d95",
+    color: "#6f4aaa",
     fontWeight: 500,
     padding: "0 8px",
     borderRadius: "4px",
@@ -51,9 +51,10 @@ const NavbarAuthenticated: FC = () => {
 
   const activeLinkStyle = {
     ...linkStyle,
-    color: "#db2777",
+    color: "#e57c7f",
     fontWeight: 700,
     backgroundColor: "rgba(233, 213, 255, 0.2)",
+    padding: "8px 8px",
   };
 
   const mobileMenuVariants = {
@@ -84,7 +85,7 @@ const NavbarAuthenticated: FC = () => {
         position: "sticky",
         top: 0,
         zIndex: 100,
-        backgroundColor: "#ffff00",
+        backgroundColor: "#ffff0000",
         paddingTop: "8px",
         paddingBottom: "8px",
       }}
@@ -141,15 +142,20 @@ const NavbarAuthenticated: FC = () => {
               ))}
               {session?.user && (
                 <Group gap="xs" style={{ marginLeft: "auto", flexShrink: 0 }}>
-                  <span style={{ fontSize: "0.875rem" }}>
+                  <span
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#8b6ebb",
+                    }}
+                  >
                     {session.user.name}
                   </span>
                   <button
                     onClick={() => signOut()}
                     style={{
                       background: "none",
-                      border: "1px solid #4c1d95",
-                      color: "#4c1d95",
+                      border: "1px solid #6f4aaa",
+                      color: "#8b6ebb",
                       padding: "3px 6px",
                       borderRadius: "4px",
                       cursor: "pointer",
@@ -168,7 +174,7 @@ const NavbarAuthenticated: FC = () => {
               <Burger
                 opened={opened}
                 onClick={toggleMenu}
-                color="#4c1d95"
+                color="#6f4aaa"
                 size="sm"
                 aria-label="Toggle navigation"
               />
@@ -216,8 +222,13 @@ const NavbarAuthenticated: FC = () => {
                         }}
                       >
                         <Group justify="space-between" align="center">
-                          <Title style={{ fontSize: "0.875rem" }}>
-                            {session?.user?.name}!
+                          <Title
+                            style={{
+                              fontSize: "0.875rem",
+                              color: "#6f4aaa",
+                            }}
+                          >
+                            {session?.user?.name}
                           </Title>
                           <button
                             onClick={() => {
@@ -227,7 +238,7 @@ const NavbarAuthenticated: FC = () => {
                             style={{
                               background: "none",
                               border: "1px solid #4c1d95",
-                              color: "#4c1d95",
+                              color: "#6f4aaa",
                               padding: "3px 6px",
                               borderRadius: "4px",
                               cursor: "pointer",

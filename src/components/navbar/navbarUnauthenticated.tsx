@@ -35,9 +35,10 @@ const NavbarUnauthenticated: FC = () => {
 
   const activeLinkStyle = {
     ...linkStyle,
-    color: "#db2777",
+    color: "#e57c7f",
     fontWeight: 700,
     backgroundColor: "rgba(233, 213, 255, 0.2)",
+    padding: "8px 8px",
   };
 
   const mobileMenuVariants = {
@@ -68,7 +69,7 @@ const NavbarUnauthenticated: FC = () => {
         position: "sticky",
         top: 0,
         zIndex: 100,
-        backgroundColor: "#ffff00",
+        backgroundColor: "#ffff0000",
         paddingTop: "8px",
         paddingBottom: "8px",
       }}
@@ -144,8 +145,8 @@ const NavbarUnauthenticated: FC = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    variant="filled"
-                    color="pink"
+                    variant="outline"
+                    color="violet"
                     component={Link}
                     href="/register"
                     size="xs"
