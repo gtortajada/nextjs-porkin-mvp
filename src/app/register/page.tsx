@@ -99,7 +99,7 @@ export default function Register() {
       <div className={styles.registerBox}>
         <div className={styles.registerHeader}>
           <h2>
-            Venha cuidar do seu dinheiro e fazer o porkin crescer!
+            Crie sua conta
           </h2>
         </div>
 
