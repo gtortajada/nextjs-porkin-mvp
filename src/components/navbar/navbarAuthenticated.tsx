@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Burger,
-  Button,
-  Container,
-  Group,
-  Title
-} from "@mantine/core";
+import { Box, Burger, Button, Container, Group, Title } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
@@ -49,7 +42,7 @@ const NavbarAuthenticated: FC = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "#b047f9",
+    color: "white",
     fontWeight: 500,
     padding: "0 8px",
     borderRadius: "4px",
@@ -108,7 +101,6 @@ const NavbarAuthenticated: FC = () => {
             minHeight: isMobile ? logoHeightMobile : logoHeightDesktop,
           }}
         >
-          {/* Logo - fixed width */}
           <Box
             style={{
               width: isMobile ? logoWidthMobile : logoWidthDesktop,
@@ -117,21 +109,22 @@ const NavbarAuthenticated: FC = () => {
               flexShrink: 0,
             }}
           >
-            <Image
-              src="/images/logo.png"
-              alt="Logo Porkin App"
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-              priority
-              sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
-            />
+            <Link href="/visao-geral" style={{ display: "block", width: "100%", height: "100%" }}>
+              <Image
+                src="/images/logo.png"
+                alt="Logo Porkin App"
+                fill
+                style={{
+                  objectFit: "contain",
+                }}
+                priority
+                sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
+              />
+            </Link>
           </Box>
 
           {!isMobile && (
             <>
-              {/* Centered menu items */}
               <Box
                 style={{
                   flexGrow: 1,
@@ -159,14 +152,13 @@ const NavbarAuthenticated: FC = () => {
                 </Group>
               </Box>
 
-              {/* Right-aligned user/sign-out */}
               <Box style={{ flexShrink: 0 }}>
                 {session?.user && (
                   <Group gap="xs">
                     <span
                       style={{
                         fontSize: "0.875rem",
-                        color: "#8b6ebb",
+                        color: "#white",
                       }}
                     >
                       {session.user.name}
@@ -198,13 +190,16 @@ const NavbarAuthenticated: FC = () => {
 
           {isMobile && (
             <>
-              <Burger
-                opened={opened}
-                onClick={toggleMenu}
-                color="#6f4aaa"
-                size="sm"
-                aria-label="Toggle navigation"
-              />
+              <Group justify="space-between" w="100%" align="center">
+                <div></div>
+                <Burger
+                  opened={opened}
+                  onClick={toggleMenu}
+                  color="#6f4aaa"
+                  size="sm"
+                  aria-label="Toggle navigation"
+                />
+              </Group>
               <AnimatePresence>
                 {opened && (
                   <motion.div
@@ -217,7 +212,7 @@ const NavbarAuthenticated: FC = () => {
                       top: `calc(${logoHeightMobile}px + 16px + 1px)`,
                       left: 0,
                       right: 0,
-                      backgroundColor: "white",
+                      backgroundColor: "#342351",
                       padding: "1rem",
                       boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                       display: "flex",
@@ -252,7 +247,7 @@ const NavbarAuthenticated: FC = () => {
                           <Title
                             style={{
                               fontSize: "0.875rem",
-                              color: "#6f4aaa",
+                              color: "white",
                             }}
                           >
                             {session?.user?.name}
@@ -261,7 +256,7 @@ const NavbarAuthenticated: FC = () => {
                             onClick={handleSignOut}
                             loading={signOutLoading}
                             variant="outline"
-                            color="violet"
+                            color="white"
                             size="sm"
                             radius="sm"
                             styles={{

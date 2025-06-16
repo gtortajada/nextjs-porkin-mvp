@@ -24,7 +24,7 @@ const NavbarUnauthenticated: FC = () => {
 
   const linkStyle = {
     textDecoration: "none",
-    color: "#b047f9",
+    color: "white",
     fontWeight: 500,
     padding: "0 8px",
     borderRadius: "4px",
@@ -66,12 +66,14 @@ const NavbarUnauthenticated: FC = () => {
     <Box
       component="nav"
       style={{
-        position: "sticky",
+        position: "fixed",
         top: 0,
         zIndex: 100,
-        backgroundColor: "#ffff0000",
+        backgroundColor: "#4c1d95",
         paddingTop: "8px",
         paddingBottom: "8px",
+        width: "100%",
+        boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Container size="xl">
@@ -84,25 +86,27 @@ const NavbarUnauthenticated: FC = () => {
             minHeight: isMobile ? logoHeightMobile : logoHeightDesktop,
           }}
         >
-          <Box
-            style={{
-              width: isMobile ? logoWidthMobile : logoWidthDesktop,
-              height: isMobile ? logoHeightMobile : logoHeightDesktop,
-              position: "relative",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/images/logo.png"
-              alt="Logo Porkin App"
-              fill
+          <Link href="/" style={{ display: "block" }}>
+            <Box
               style={{
-                objectFit: "contain",
+                width: isMobile ? logoWidthMobile : logoWidthDesktop,
+                height: isMobile ? logoHeightMobile : logoHeightDesktop,
+                position: "relative",
+                flexShrink: 0,
               }}
-              priority
-              sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
-            />
-          </Box>
+            >
+              <Image
+                src="/images/logo.png"
+                alt="Logo Porkin App"
+                fill
+                style={{
+                  objectFit: "contain",
+                }}
+                priority
+                sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
+              />
+            </Box>
+          </Link>
 
           {!isMobile && (
             <Group
@@ -132,7 +136,7 @@ const NavbarUnauthenticated: FC = () => {
                 >
                   <Button
                     variant="outline"
-                    color="violet"
+                    color="white"
                     component={Link}
                     href="/login"
                     size="xs"
@@ -146,7 +150,7 @@ const NavbarUnauthenticated: FC = () => {
                 >
                   <Button
                     variant="outline"
-                    color="violet"
+                    color="white"
                     component={Link}
                     href="/register"
                     size="xs"
@@ -163,7 +167,7 @@ const NavbarUnauthenticated: FC = () => {
               <Burger
                 opened={opened}
                 onClick={toggleMenu}
-                color="#4c1d95"
+                color="#6F4AAA"
                 size="sm"
                 aria-label="Toggle navigation"
               />
@@ -179,7 +183,7 @@ const NavbarUnauthenticated: FC = () => {
                       top: `calc(${logoHeightMobile}px + 16px + 1px)`,
                       left: 0,
                       right: 0,
-                      backgroundColor: "white",
+                      backgroundColor: "#342351",
                       padding: "1rem",
                       boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                       display: "flex",
