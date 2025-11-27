@@ -13,7 +13,6 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import classes from "./hero.module.css";
 
 type ImageItem = { src: string; alt: string };
 
@@ -32,7 +31,7 @@ export const Hero = ({
     pos="relative"
     h="100vh"
     mah={950}
-    style={{ overflow: "hidden" }}
+    style={{ overflow: "hidden", boxShadow: "inset 0 -150px 30px 0px rgba(0, 0, 0, 0.5)", zIndex: "1" }}
     fluid
   >
     <Container
@@ -50,7 +49,7 @@ export const Hero = ({
         left={0}
         h="100%"
         w="100%"
-        className={classes["vertical-backdrop"]}
+        className="vertical-backdrop"
       />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -67,9 +66,9 @@ export const Hero = ({
       >
         <Box
           pos="relative"
-          w={{ base: 300, sm: 350, md: 400, lg: 400, xl: 400 }}
-          h={{ base: 450, sm: 525, md: 550, lg: 550, xl: 550 }}
+          w={{ base: 350, sm: 350, md: 400, lg: 400, xl: 500 }}
           style={{
+            aspectRatio: "408/612",
             filter: "drop-shadow(0 8px 5px rgba(0, 0, 0, 0.1))",
           }}
         >
@@ -79,8 +78,9 @@ export const Hero = ({
             fill
             priority
             style={{
-              objectFit: "contain",
+              objectFit: "cover",
               objectPosition: "bottom right",
+              zIndex: "2",
             }}
           />
         </Box>

@@ -1,13 +1,10 @@
-import { Funcionalidades } from "@/components/titanium/mantine/blocks/funcionalidades";
-import { Hero03 } from "@/components/titanium/mantine/blocks/hero-03";
-import { Passos } from "@/components/titanium/mantine/blocks/passos";
+import { Hero } from "@/components/titanium/mantine/blocks/hero";
+import "./page.module.css"
 
 export default async function Home() {
   return (
     <main>
-      <Hero03 />
-      <Passos />
-      <Funcionalidades />
+      <Hero />
     </main>
   );
 }

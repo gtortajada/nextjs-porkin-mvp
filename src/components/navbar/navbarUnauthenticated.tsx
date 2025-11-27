@@ -6,39 +6,119 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
 const NavbarUnauthenticated: FC = () => {
   const pathname = usePathname();
   const { width } = useViewportSize();
   const isMobile = width < 768;
   const [opened, setOpened] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("/");
 
   const toggleMenu = () => setOpened((o) => !o);
 
-  const menuItems = [
-    { href: "/", label: "Início" },
-    { href: "#passos", label: "Como fazemos" },
-    { href: "#funcionalidades", label: "Recursos" },
-  ];
+  const menuItems = useMemo(
+    () => [
+      { href: "/", label: "Início", sectionId: "hero" },
+      { href: "#passos", label: "Como fazemos", sectionId: "passos" },
+      { href: "#funcionalidades", label: "Recursos", sectionId: "funcionalidades"},
+    ],
+    []
+  );
+
+  const handleLinkClick = useCallback(
+    (href: string) => {
+      if (href.startsWith("#")) {
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          const navbarHeight = isMobile ? 80 : 100;
+          const targetPosition = targetElement.offsetTop - navbarHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      } else if (href === "/") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      if (isMobile && opened) {
+        setOpened(false);
+      }
+    },
+    [isMobile, opened]
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (pathname !== "/") {
+        setActiveSection(pathname);
+        return;
+      }
+
+      const scrollPosition = window.scrollY + 100;
+      const sections = menuItems
+        .map((item) => ({
+          id: item.sectionId,
+          href: item.href,
+          element: document.getElementById(item.sectionId),
+        }))
+        .filter((section) => section.element);
+
+      let currentSection = "/";
+
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        const nextSection = sections[i + 1];
+
+        if (section.element) {
+          const sectionTop = section.element.offsetTop;
+          const sectionBottom = nextSection?.element
+            ? nextSection.element.offsetTop
+            : document.body.scrollHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            currentSection = section.href;
+            break;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname, menuItems]);
 
   const linkStyle = {
     textDecoration: "none",
     color: "white",
     fontWeight: 500,
-    padding: "0 8px",
+    padding: "8px 8px",
     borderRadius: "4px",
     backgroundColor: "transparent",
     transition: "all 0.2s ease",
     fontSize: "0.875rem",
+    cursor: "pointer",
+    display: "block",
+    border: "none",
+    textAlign: "left" as const,
+    position: "relative" as const,
   };
 
   const activeLinkStyle = {
     ...linkStyle,
     color: "#e57c7f",
     fontWeight: 700,
-    backgroundColor: "rgba(233, 213, 255, 0.2)",
-    padding: "8px 8px",
   };
 
   const mobileMenuVariants = {
@@ -54,7 +134,7 @@ const NavbarUnauthenticated: FC = () => {
     },
   };
 
-  const logoWidthDesktop = 160;
+  const logoWidthDesktop = 140;
   const logoOriginalWidth = 1024;
   const logoOriginalHeight = 311;
   const logoAspectRatio = logoOriginalWidth / logoOriginalHeight;
@@ -69,7 +149,7 @@ const NavbarUnauthenticated: FC = () => {
         position: "fixed",
         top: 0,
         zIndex: 100,
-        backgroundColor: "#4c1d95",
+        backgroundColor: "#1E133F",
         paddingTop: "8px",
         paddingBottom: "8px",
         width: "100%",
@@ -86,7 +166,10 @@ const NavbarUnauthenticated: FC = () => {
             minHeight: isMobile ? logoHeightMobile : logoHeightDesktop,
           }}
         >
-          <Link href="/" style={{ display: "block" }}>
+          <Box
+            style={{ display: "block", cursor: "pointer" }}
+            onClick={() => handleLinkClick("/")}
+          >
             <Box
               style={{
                 width: isMobile ? logoWidthMobile : logoWidthDesktop,
@@ -106,28 +189,40 @@ const NavbarUnauthenticated: FC = () => {
                 sizes={`(max-width: 768px) ${logoWidthMobile}px, ${logoWidthDesktop}px`}
               />
             </Box>
-          </Link>
+          </Box>
 
           {!isMobile && (
-            <Group
-              gap="md"
-              justify="flex-end"
-              style={{ flexGrow: 1, flexWrap: "nowrap" }}
-            >
-              {menuItems.map((item) => (
-                <motion.div
-                  key={item.href}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href={item.href}
-                    style={pathname === item.href ? activeLinkStyle : linkStyle}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
+            <>
+              <Box
+                style={{
+                  flexGrow: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Group gap="md">
+                  {menuItems.map((item) => {
+                    const isActive = activeSection === item.href;
+
+                    return (
+                      <motion.div
+                        key={item.href}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Box
+                          style={{
+                            ...(isActive ? activeLinkStyle : linkStyle),
+                          }}
+                          onClick={() => handleLinkClick(item.href)}
+                        >
+                          {item.label}
+                        </Box>
+                      </motion.div>
+                    );
+                  })}
+                </Group>
+              </Box>
 
               <Group gap="sm" style={{ marginLeft: "auto", flexShrink: 0 }}>
                 <motion.div
@@ -159,7 +254,7 @@ const NavbarUnauthenticated: FC = () => {
                   </Button>
                 </motion.div>
               </Group>
-            </Group>
+            </>
           )}
 
           {isMobile && (
@@ -194,18 +289,21 @@ const NavbarUnauthenticated: FC = () => {
                       borderTop: "1px solid #e0e0e0",
                     }}
                   >
-                    {menuItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        style={
-                          pathname === item.href ? activeLinkStyle : linkStyle
-                        }
-                        onClick={() => setOpened(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {menuItems.map((item) => {
+                      const isActive = activeSection === item.href;
+
+                      return (
+                        <Box
+                          key={item.href}
+                          style={{
+                            ...(isActive ? activeLinkStyle : linkStyle),
+                          }}
+                          onClick={() => handleLinkClick(item.href)}
+                        >
+                          {item.label}
+                        </Box>
+                      );
+                    })}
 
                     <Group
                       grow
@@ -217,7 +315,7 @@ const NavbarUnauthenticated: FC = () => {
                     >
                       <Button
                         variant="outline"
-                        color="violet"
+                        color="white"
                         component={Link}
                         href="/login"
                         onClick={() => setOpened(false)}
@@ -227,7 +325,7 @@ const NavbarUnauthenticated: FC = () => {
                       </Button>
                       <Button
                         variant="outline"
-                        color="violet"
+                        color="white"
                         component={Link}
                         href="/register"
                         onClick={() => setOpened(false)}
